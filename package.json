@@ -1,0 +1,19 @@
+{
+  "name": "gestor-de-tareas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "app": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^22.0.0"
+  },
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1",
+    "mysql": "^2.18.1",
+    "webpack": "^5.75.0"
+  }
+}
