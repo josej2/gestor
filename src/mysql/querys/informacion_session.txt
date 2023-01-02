@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 
-
-En este apartado se encuentran los querys de creacion
-e interaccion directa de modificacion con la base de datos;
-=======
 
 
 En este apartado se encuentran los querys de creacion
 e interaccion directa de modificacion con la base de datos;
->>>>>>> e912da27b976730187c24747432680bcba95686e
+
