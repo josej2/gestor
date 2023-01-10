@@ -6,7 +6,6 @@ const llamar_tareas_en_mysql = require('./mysql/llamar_Tareas')//modulo para lla
 const llamar_tarea_especifica = require('./mysql/llamar_tarea_especifica')//modulo para llamar una tarea en especial
 const {crearInterfaz} = require('./procesos_principales/creacion_Ventana')//modulo donde se configura y crea  ventana
 const {CrearVentanaTareaEspecifica} = require('./procesos_principales/crear_ventana_tarea')
-const {crearVentanaCierreTarea} = require('./procesos_principales/creacion_ventana_cierre_tarea')
 
 
 
@@ -67,17 +66,29 @@ ipcMain.on('enlistar_tarea_especifica', (event, id) => {
     cargarTareaEspecifica(id)
 })
 
+
+
 //esta atento a llamado de cierre de tarea desde el render
 //para envíar una ventanamodal para permitir dicha operacion
 ipcMain.on('cerrar_tarea', () => {
-    cargarVentana_de_Cierre()
+    
 })
+
+
+ipcMain.on('confirma_eliminacion', (event, objeto) => {
+    console.log(objeto);
+})
+
+
+
+
+
 
 
 
 /***********************************************************\  
                     FUNCIONES Y PROCESOS
-                    DE DINAMICA CON LA APP  
+                   DE DINAMICA CON LA APP  
 \***********************************************************/
 
 function actualizarTareas (){
@@ -108,10 +119,3 @@ function cargarTareaEspecifica (id){
     })
 }
 
-
-function cargarVentana_de_Cierre (){
-    let ventana_cierre_tarea = crearVentanaCierreTarea(ventana)
-    ventana_cierre_tarea.once('ready-to-show', () => {
-        ventana_cierre_tarea.show()
-    })
-}

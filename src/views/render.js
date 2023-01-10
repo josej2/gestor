@@ -5,10 +5,8 @@ const {recibirTodas_las_Tareas} = require('./comunicacion_ipc_recibir')
 
 
 
-
 iniciarTareas ()
 recibirTodas_las_Tareas(recorrerTareas)
-
 
 
 

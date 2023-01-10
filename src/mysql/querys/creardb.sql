@@ -11,3 +11,8 @@ create table tareas (
     fecha_creacion date,
     fecha_limite date
 );
+
+
+create table tareasEliminadas  (
+    
+);

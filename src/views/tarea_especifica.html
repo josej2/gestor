@@ -37,5 +37,69 @@
             </div>
         </div>
     </div>
+
+
+    <!--Ventana Modal-->
+    <div id="modal_cierre" class="modal_cierre">
+
+        <div class="menu_modal_cierre">
+            <div class="informacion_abierta_cierre">
+                <label for="">¿Cómo ha terminado la tarea?</label>
+                <textarea id="comentario_abierto" placeholder="Da un comentario sobre la tarea"></textarea>
+                <div id="mensaje_error" class="mensaje_error mensaje_error_entrada">
+                    <p>Hay campos sin responder</p>
+                </div>
+            </div>
+
+            
+
+            <div class="informacion_especifica_cierre">
+                <label for="">Califique su proceso para terminar la tarea</label>
+                <div class="calificador-tarea">
+
+                    <form id="calificacion_estrellas">
+                        <p class="clasificacion">
+                            <input class="estrella" id="radio1" type="radio" name="estrellas" value="5">
+                            <label for="radio1">★</label>
+                            <input class="estrella" id="radio2" type="radio" name="estrellas" value="4">
+                            <label for="radio2">★</label>
+                            <input class="estrella" id="radio3" type="radio" name="estrellas" value="3">
+                            <label for="radio3">★</label>
+                            <input class="estrella" id="radio4" type="radio" name="estrellas" value="2">
+                            <label for="radio4">★</label>
+                            <input class="estrella" id="radio5" type="radio" name="estrellas" value="1">
+                            <label for="radio5">★</label>
+                        </p>
+                    </form>
+
+                </div>
+
+                <label class="preguntas" for="">¿Has completado la tarea en su totalidad?</label>
+    
+                <label class="pregunta1" for="">si</label>
+                <input name="pregunta1" type="radio" class="pregunta1"  id="completadoSi" value="si">
+                
+                <label class="pregunta1" for="">no</label>
+                <input name="pregunta1" type="radio" class="pregunta1"  id="completadoNo" value="no">
+                
+
+
+                <label class="preguntas" for="">¿has cumplido con la fecha limite?</label>
+                
+                <label for="">si</label>
+                <input name="pregunta2" type="radio" name="" id="fechacumplidaSi" value="si">
+                <label for="">no</label>
+                <input name="pregunta2" type="radio" name="" id="fechacumplidaNo" value="no">
+
+
+                <div class="contenedor_botones contenedor_botones_cierre">
+                    <button id="cierre_total">Eliminar</button>
+                    <button id="cancelar">Cancelar</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
     <script src="./index_tareas_especificas.js"></script>
 </body>

@@ -5,6 +5,7 @@ body {
     height: 91%;
     position: absolute;
     /*border: solid 1px;*/
+    background-color: rgb(206, 204, 204);
 }
 
 .contenedor-principal {

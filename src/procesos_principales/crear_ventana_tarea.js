@@ -12,8 +12,8 @@ function  CrearVentanaTareaEspecifica (ventana){
             //parametro ventana
             parent: ventana,
             //tamaño minimo de la nueva ventana 
-            minWidth: 600, 
-            minHeight: 520,
+            minWidth: 650, 
+            minHeight: 590,
             //preferencias o configuraciones de ventana 
             //sobre el código que podrá ejecutar
             webPreferences : {
@@ -27,6 +27,7 @@ function  CrearVentanaTareaEspecifica (ventana){
     //ventana_Tarea_Especifica.removeMenu()
     return ventana_Tarea_Especifica
 }
+
 
 module.exports = {
     CrearVentanaTareaEspecifica

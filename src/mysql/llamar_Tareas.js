@@ -4,7 +4,6 @@ module.exports = async function () {
     try {
         const arrayConsulta = await conexionMysql.query('select * from tareas')
         console.log("tareas llamadas");
-        console.log(arrayConsulta);
         return arrayConsulta
     }catch(e){
         console.log("error de llamado de datos "+e);

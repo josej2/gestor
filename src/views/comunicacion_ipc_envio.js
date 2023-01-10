@@ -22,8 +22,8 @@ function pedirTareaEspecifica (id){
     ipcRenderer.send('enlistar_tarea_especifica', id)
 }
 
-function pedirCierreTarea (){
-    ipcRenderer.send('cerrar_tarea') 
+function eliminarTarea (objeto){
+    ipcRenderer.send ('confirma_eliminacion', objeto)
 }
 
 
@@ -31,5 +31,5 @@ module.exports = {
     enviarAlMain,
     iniciarTareas,
     pedirTareaEspecifica,
-    pedirCierreTarea
+    eliminarTarea
 }

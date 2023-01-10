@@ -52,3 +52,192 @@
     right: -60%;
 }
 
+
+
+.modal_cierre {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(144, 148, 150, 0.8);
+}
+
+
+.menu_modal_cierre {
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    width: 60%;
+    height: 75%;
+    position: relative;
+}
+
+
+.informacion_abierta_cierre {
+    margin: 5%;
+    width: 55%;
+    height: 85%;
+}
+
+.informacion_abierta_cierre label {
+    display: block;
+    margin: 2%;
+    border-bottom: solid 1px;
+    text-align: center;
+    padding: 4%;
+    margin-bottom: 1%;
+}
+
+.informacion_abierta_cierre textarea {
+    display: block;
+    width: 85%;
+    margin: 3%;
+    height: 70%;
+    border: none ;
+    border-left: solid 1px;
+    padding: 1rem;
+}
+
+.informacion_abierta_cierre textarea:focus {
+    outline: none;
+}
+
+.informacion_especifica_cierre {
+    margin: 5%;
+    width: 35%;
+    text-align: center;
+    padding: 1%;
+    height: 85%;
+}
+
+
+.informacion_especifica_cierre button {
+    display: block;
+    height: 15%;
+    width: 4rem ;
+    height: 2rem;
+    margin: 10%;
+}
+
+.contenedor_botones_cierre {
+    right: 7%;
+    margin-top: 2%;
+}
+
+.calificador-tarea {
+    margin-top: 10%;
+    width: 100%;
+}
+
+.calificador-tarea input[type = "radio"] {
+    display:none;
+    margin: 0px;
+}
+
+.calificador-tarea input[type = "radio"]:checked ~ label{
+    color:orange;
+}
+
+.calificador-tarea form {
+    width: 100%;
+    margin: 0 auto;
+    height: 40%;
+    display: block;
+}
+.calificador-tarea p {
+    text-align: center;
+}
+
+.calificador-tarea label {
+    font-size: 20px;
+    margin: 0.2%;
+    padding: 0px;
+}
+
+
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override; /* bidi de bidireccional */
+}
+
+.clasificacion label{
+    color: rgb(184, 178, 178);
+}
+
+.clasificacion label:hover{
+    color:orange;
+}
+
+
+.clasificacion label:hover ~ label {
+    color:orange;
+}
+
+
+.preguntas {
+    display: block;
+    word-wrap: break-word;
+    font-size: 2.5vh ;
+    margin-bottom: 10%;
+}
+
+.pregunta1 {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+#mensaje_error {
+    display: none;
+}
+
+
+.mensaje_error {
+    border: solid 2px;
+    border-color: rgb(234, 104, 104);
+    height: 10%;
+    position: relative;
+    padding: auto;
+}
+
+
+.mensaje_error_entrada {
+    animation-duration: 0.5s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+}
+
+
+.mensaje_error p {
+    font-size: 2vh;
+    text-align: center;
+    margin: 5% auto;
+}
+
+.mensaje_error_rebote {
+    
+    animation: rebote .3s normal 0s 1;
+}
+
+
+@keyframes rebote {
+    0% { }
+    50% { transform: translateY(-1em); }
+    80% { transform: translateY(0.25em); }
+    100% { transform: translateY(0em); }
+}
