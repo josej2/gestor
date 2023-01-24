@@ -3,13 +3,8 @@ const { enviarAlMain, iniciarTareas, pedirTareaEspecifica} = require('./comunica
 const {recibirTodas_las_Tareas} = require('./comunicacion_ipc_recibir')
 
 
-
-
 iniciarTareas ()
 recibirTodas_las_Tareas(recorrerTareas)
-
-
-
 
 
 
@@ -18,9 +13,9 @@ recibirTodas_las_Tareas(recorrerTareas)
                         PRINCIPALES  
 \***********************************************************/
 
-
 //recorre el array de la consulta de tareas extraida de mysql  
 function recorrerTareas (tareas){
+    reiniciarTareas() 
     let vuelta = 0
     tareas.map( elemento => {
         vuelta ++
@@ -41,20 +36,15 @@ function recorrerTareas (tareas){
 //insertar nueva tarea
 agregar.addEventListener('click', (event) => {
     event.preventDefault();
-    reiniciarTareas() 
     enviarAlMain(obtener_datos())
 } 
 )
-
-
-
 
 
 /***********************************************************\  
                     FUNCIONES Y PROCESOS
                 DE MATERIALIZAR ELEMENTOS HTML  
 \***********************************************************/
-
 
 //metodo para insertar elementos html tareas
 function crearCuadrosdeTareas (id,titulo, fecha_creacion, dias_avance, fecha_limite){

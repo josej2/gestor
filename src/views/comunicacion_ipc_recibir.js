@@ -12,13 +12,14 @@ function recibirTodas_las_Tareas (callback){
 
 function recibirTareaEspecifica (callback){
     ipcRenderer.on('enlistar_tarea', (event, objeto) => {
-        console.log("recibe un evento");
-        console.log(objeto);
-        objeto.map( carater => {
-            console.log(carater.nombreTarea);
-            callback(carater.nombreTarea, carater.descripcion, carater.fecha_creacion, carater.fecha_limite)
-        })       
+        objeto.map( caracter => {
+            callback(caracter.nombreTarea, caracter.descripcion, caracter.fecha_creacion, caracter.fecha_limite, caracter.id, caracter.clase)
+        })
+        
+        return objeto
     })
+
+    
 }
 
 

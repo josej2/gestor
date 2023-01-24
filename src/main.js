@@ -4,10 +4,10 @@ require('electron-reload')(__dirname)//modulo que funciona como nodemon
 const insertar_En_Mysql = require('./mysql/inserccion_Tareas')//modulo para insertar datos a mysql
 const llamar_tareas_en_mysql = require('./mysql/llamar_Tareas')//modulo para llamar tareas de mysql
 const llamar_tarea_especifica = require('./mysql/llamar_tarea_especifica')//modulo para llamar una tarea en especial
+const eliminar_tarea_en_mysql = require('./mysql/eliminar_tarea')
+const insertar_registro_tarea_eliminada_mysql = require('./mysql/insertar_registro_tarea_eliminada')
 const {crearInterfaz} = require('./procesos_principales/creacion_Ventana')//modulo donde se configura y crea  ventana
 const {CrearVentanaTareaEspecifica} = require('./procesos_principales/crear_ventana_tarea')
-
-
 
 
 
@@ -38,10 +38,6 @@ app.on('window-all-closed', () => {
 )
 
 
-
-
-
-
 /**********************************************************\  
                 CANALES DE COMUNICACION
 \**********************************************************/
@@ -67,23 +63,35 @@ ipcMain.on('enlistar_tarea_especifica', (event, id) => {
 })
 
 
+ipcMain.on('confirma_eliminacion', async (event, objeto) => {
 
-//esta atento a llamado de cierre de tarea desde el render
-//para envíar una ventanamodal para permitir dicha operacion
-ipcMain.on('cerrar_tarea', () => {
+
+    try{
+        const guardado = insertar_registro_tarea_eliminada_mysql(objeto)
+
+        guardado.then( respuesta => {
+            (respuesta == true) ? eliminar_tarea_en_mysql(objeto.id) : console.log('no se ha podido guardar');
+            //depués de eliminar la tarea e ingresar sus registros en otra base de datos
+            //ahora se cierra la ventana de la tarea especifica
+            let ventana = array_de_ventanas.find( objetoventana => objeto.id == objetoventana.identificador)
+
+            if(ventana != null && ventana != undefined ){
+                ventana.variable_ventana.close();
+                actualizarTareas() 
+            }
+        })
+    }catch (error) {
+        console.log(`error al elminar y generar registro de tarea ${error}`);
+    }
+
     
+    
+    
+    
+    
+    
+   
 })
-
-
-ipcMain.on('confirma_eliminacion', (event, objeto) => {
-    console.log(objeto);
-})
-
-
-
-
-
-
 
 
 /***********************************************************\  
@@ -99,6 +107,10 @@ function actualizarTareas (){
         ventana.webContents.send('actualizar_tareas', tareas)   
     })
 }
+
+
+let array_de_ventanas = []
+let cantidad_ventanas = 0 ;
 
 //recibe un id de la tarea que quiere ser llamada de forma individual
 function cargarTareaEspecifica (id){
@@ -117,5 +129,8 @@ function cargarTareaEspecifica (id){
         //ventana creada
         ventana_Tarea_Especifica.webContents.send('enlistar_tarea', resultado)
     })
+
+    array_de_ventanas[cantidad_ventanas]=  { variable_ventana : ventana_Tarea_Especifica, identificador : id }
+    cantidad_ventanas++
 }
 
