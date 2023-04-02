@@ -50,25 +50,20 @@ ipcMain.on('enviar_tarea', async (event, objetocreacion) => {
         actualizarTareas()
     } 
 )
-
 //expone tareas después de que la ventana ha sido creada
 ipcMain.on('inicia_ventana', () => {
     actualizarTareas()
 })
-
 //está atento a la ejecucion del evento "enlistar_tarea_especifica"
 //desde el render el cual a su vez le enviara un id
 ipcMain.on('enlistar_tarea_especifica', (event, id) => {
     cargarTareaEspecifica(id)
 })
 
-
 ipcMain.on('confirma_eliminacion', async (event, objeto) => {
-
 
     try{
         const guardado = insertar_registro_tarea_eliminada_mysql(objeto)
-
         guardado.then( respuesta => {
             (respuesta == true) ? eliminar_tarea_en_mysql(objeto.id) : console.log('no se ha podido guardar');
             //depués de eliminar la tarea e ingresar sus registros en otra base de datos
@@ -83,14 +78,6 @@ ipcMain.on('confirma_eliminacion', async (event, objeto) => {
     }catch (error) {
         console.log(`error al elminar y generar registro de tarea ${error}`);
     }
-
-    
-    
-    
-    
-    
-    
-   
 })
 
 
@@ -101,7 +88,7 @@ ipcMain.on('confirma_eliminacion', async (event, objeto) => {
 
 function actualizarTareas (){
     //obtiene todas las tareas almacenadas en mysql
-    const objeto = llamar_tareas_en_mysql()
+    const objeto = llamar_tareas_en_mysql() 
     //una vez terminado el proceso de llamar envia al render un objeto de objetos
     objeto.then (tareas =>{
         ventana.webContents.send('actualizar_tareas', tareas)   
@@ -129,7 +116,6 @@ function cargarTareaEspecifica (id){
         //ventana creada
         ventana_Tarea_Especifica.webContents.send('enlistar_tarea', resultado)
     })
-
     array_de_ventanas[cantidad_ventanas]=  { variable_ventana : ventana_Tarea_Especifica, identificador : id }
     cantidad_ventanas++
 }

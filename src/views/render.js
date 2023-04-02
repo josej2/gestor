@@ -1,29 +1,45 @@
+
+const {obtener_filtros} = require('./filtro')
 const obtener_datos = require('./Datos_del_Dom')
-const { enviarAlMain, iniciarTareas, pedirTareaEspecifica} = require('./comunicacion_ipc_envio')
 const {recibirTodas_las_Tareas} = require('./comunicacion_ipc_recibir')
+const {
+    enviarAlMain, 
+    iniciarTareas, 
+    pedirTareaEspecifica, 
+    filtrar
+    } = require('./comunicacion_ipc_envio')
 
 
 iniciarTareas ()
 recibirTodas_las_Tareas(recorrerTareas)
 
+/*******************************************************\
+                    EVENTOS DE BOTON
+\*******************************************************/
 
+//  insertar nueva tarea
+agregar.addEventListener('click', (event) => {
+    event.preventDefault();
+    enviarAlMain(obtener_datos())
+})
 
 /***********************************************************\  
                     FUNCIONES Y PROCESOS
                         PRINCIPALES  
 \***********************************************************/
 
-//recorre el array de la consulta de tareas extraida de mysql  
+//  recorre el array de la consulta de tareas extraida de mysql
 function recorrerTareas (tareas){
     reiniciarTareas() 
     let vuelta = 0
     tareas.map( elemento => {
         vuelta ++
-        crearCuadrosdeTareas(elemento.id,elemento.nombreTarea, elemento.fecha_creacion, 1, elemento.fecha_limite) 
+        crearCuadrosdeTareas(elemento.id,elemento.nombreTarea, elemento.fecha_creacion, contarDiasTranscurridos(elemento.fecha_creacion), elemento.fecha_limite) 
     })
     let botones_tareas = document.getElementsByClassName('boton_tareas')
-    console.log(botones_tareas);
     
+    informe_tareas_totales.innerHTML = vuelta+' tareas';
+
     while(vuelta !=0){
         botones_tareas[vuelta-1].addEventListener('click', (evento) => {
             evento.preventDefault()
@@ -32,21 +48,12 @@ function recorrerTareas (tareas){
         });  vuelta --
     }   
 }
+        /*---------------------------------
+                FUNCIONES Y PROCESOS
+            DE MATERIALIZAR ELEMENTOS HTML  
+          ---------------------------------*/
 
-//insertar nueva tarea
-agregar.addEventListener('click', (event) => {
-    event.preventDefault();
-    enviarAlMain(obtener_datos())
-} 
-)
-
-
-/***********************************************************\  
-                    FUNCIONES Y PROCESOS
-                DE MATERIALIZAR ELEMENTOS HTML  
-\***********************************************************/
-
-//metodo para insertar elementos html tareas
+//metodo para insertar elementos html que forman lo cuadron de tarea
 function crearCuadrosdeTareas (id,titulo, fecha_creacion, dias_avance, fecha_limite){
     
     let tarea = `
@@ -80,5 +87,21 @@ function crearCuadrosdeTareas (id,titulo, fecha_creacion, dias_avance, fecha_lim
 //reinicia o elimina los elementos dentro del area de tareas
 function reiniciarTareas () {
     contenedor_tareas.innerHTML = ""
+}
+
+
+/***********************************************************\  
+                    FUNCIONES Y PROCESOS
+        SECUNDARIOS QUE PROVEEN DE DATOS ESPECIFICOS  
+\***********************************************************/
+
+function contarDiasTranscurridos (fecha_creacion) {
+
+    let fecha_hoy = new Date();
+    return Math.trunc ((fecha_hoy - fecha_creacion) / (1000*60*60*24));
+}
+
+function ejecutarFiltro (filtros){
+    filtrar(obtener_filtros)
 }
 

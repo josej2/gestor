@@ -30,3 +30,6 @@ create table tareasEliminadas  (
 
     comentario text
 );
+
+
+alter table tareas add tipo varchar(20);

@@ -24,7 +24,7 @@ function  CrearVentanaTareaEspecifica (ventana){
             }
         }
     )
-    //ventana_Tarea_Especifica.removeMenu()
+    ventana_Tarea_Especifica.removeMenu()
     return ventana_Tarea_Especifica
 }
 

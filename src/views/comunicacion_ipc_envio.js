@@ -9,13 +9,11 @@ const enviarAlMain = (objeto) => {
     ipcRenderer.send('enviar_tarea', objeto)
 }
 
-
 //evento para cargar las tareas cuando 
-//inicia la ventana
+//inicia la ventana y cuando se actualiza
 function iniciarTareas () {
     ipcRenderer.send('inicia_ventana')  
 }
-
 
 //evento para pedir una tarea especifica
 function pedirTareaEspecifica (id){
@@ -26,10 +24,15 @@ function eliminarTarea (objeto){
     ipcRenderer.send ('confirma_eliminacion', objeto)
 }
 
+//evento para filtrar las tareas por tipo y clase
+function filtrar (filtro){
+    ipcRenderer.send('filtrar',filtro)
+}
 
 module.exports = {
     enviarAlMain,
     iniciarTareas,
     pedirTareaEspecifica,
-    eliminarTarea
+    eliminarTarea,
+    filtrar
 }

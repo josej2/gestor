@@ -1,3 +1,4 @@
+
 const mysql = require('mysql')
 const {requisitos_Conexion} = require('./claves')
 const {promisify} = require('util');
@@ -5,7 +6,7 @@ const {promisify} = require('util');
 var conexion = mysql.createPool(requisitos_Conexion);
 conexion.getConnection( (error, resultadoconexion) => 
     { 
-        (error) ? console.log("error de conexion "+error) : resultadoconexion.release(); console.log("Conexion exictosa");
+        (error) ? console.log("error de conexion "+error) : resultadoconexion.release(); console.log("Conexion exitosa");
     }
 )
 

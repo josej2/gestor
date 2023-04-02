@@ -14,7 +14,7 @@ const crearInterfaz = () => {
             width:800,
             height:800, 
             //tamaño minimo de ventana 
-            minWidth: 600, 
+            minWidth: 800, 
             minHeight: 520,
             //preferencias o configuraciones de ventana 
             //sobre el código que podrá ejecutar
@@ -31,7 +31,7 @@ const crearInterfaz = () => {
     //cuando se inicia la venta
     ventana.loadFile('src/views/index.html')
     //ventana.webContents.openDevTools()
-    ventana.removeMenu()    
+    //ventana.removeMenu()    
     return ventana
 }
 

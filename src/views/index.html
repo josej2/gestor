@@ -14,31 +14,60 @@
     
 </head>
 
-
-
 <body>
     <div class="contenedor-principal">
 
-        <div class="contenedor_tareas" id="contenedor_tareas">
+        <div class="informador">
+            <label for="" id="informe_tareas_totales"></label>
+            <div>
+                    <div id="cuadro_opciones_filtrado">
+                        <div>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Tareas instantanea">Tareas instantanea</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Tareas cortas">Tareas cortas</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Tareas largas">Tareas largas</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Proyectos">Proyectos</label>
+                        </div>
+                        <div>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Personal">Personal</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Academico">Academico</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Laboral">Laboral</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Profesional">Profesional</label>
+                        <label><input class="checkbox_filtro" type="checkbox" value="Autodidacta">Autodidacta</label>
+                        </div>
+                    </div>
+            </div>
 
+            <div class="contenedor_tareas" id="contenedor_tareas">
+    
+            </div>
         </div>
 
         <div class="cotenedor-barra-herramientas">
 
             <div class="caja_creacion_tareas">
     
-                <form action="">
+                <form action="" class="formulario">
 
                     <label id="titulo_herramientas" for="">crear tarea</label>
                     <input id="nombre_tarea" type="text" placeholder="Nombre de tarea">
-                    <label for="">CLASIFICACION</label>
+                    
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo">
+                        <option value=""></option>
+                        <option value="Tarea instantanea">Tareas instantanea</option>
+                        <option value="Tareas cortas">Tareas cortas</option>
+                        <option value="Tareas Largas">Tareas largas</option>
+                        <option value="Proyectos">Proyectos</option>
+                    </select>
+
+                    <label for="clasificacion">Clasificacion</label>
                     <select id="clasificacion">
                         <option value=""></option>
-                        <option value="personal">PERSONAL</option>
-                        <option value="academico">ACADEMICO</option>
-                        <option value="laboral">LABORAL</option>
-                        <option value="profesional">PROFESIONAL</option>
-                        <option value="autodidacta">AUTODIDACTA</option>
+                        <option value="personal">Personal</option>
+                        <option value="academico">Academico</option>
+                        <option value="laboral">Laboral</option>
+                        <option value="profesional">Profesional</option>
+                        <option value="autodidacta">Autodidacta</option>
                     </select>
 
                     <textarea id="descripcion_tarea" placeholder="Descripcion"></textarea>
@@ -54,9 +83,9 @@
         </div>
 
     </div>
-
-    <script src="./Datos_del_Dom.js"></script>
+    
     <script src="./render.js"></script>
+    <script src="./filtro.js"></script>
 
 </body>
 

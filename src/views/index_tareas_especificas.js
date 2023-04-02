@@ -5,7 +5,6 @@ const {eliminarTarea} = require('./comunicacion_ipc_envio')
 recibirTareaEspecifica(organizarTarea)
 
 
-
 /*******************************************************\
                     VARIABLES GLOBALES
 \*******************************************************/
@@ -13,7 +12,6 @@ recibirTareaEspecifica(organizarTarea)
 let tarea //almacena datos de tarea traidos de mysql
 let primeravez = true //ayuda a verificar que el error de 
                       //datos ya se haya lanzado una vez
-
 
 
 /*******************************************************\
@@ -36,7 +34,9 @@ cancelar.addEventListener ('click', (e) => {
     cerrarVentanaModalCierre()
 })
 
-
+agregar_avance.addEventListener('click', () =>{
+    
+})
 
 
 /*******************************************************\
@@ -74,7 +74,7 @@ function hacerRebote () {
     }, 1000);
 }
 
-function cerrarVentanaModalCierre ( ){
+function cerrarVentanaModalCierre (){
     modal_cierre.style.display = 'none'
 }
 

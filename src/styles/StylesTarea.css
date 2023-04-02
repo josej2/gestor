@@ -241,3 +241,17 @@
     80% { transform: translateY(0.25em); }
     100% { transform: translateY(0em); }
 }
+
+
+.modal_agregar_avance {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(144, 148, 150, 0.8);
+}
