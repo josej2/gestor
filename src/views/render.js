@@ -1,17 +1,17 @@
 
-const {obtener_filtros} = require('./filtro')
+const obtener_filtros = require('./filtro')
 const obtener_datos = require('./Datos_del_Dom')
 const {recibirTodas_las_Tareas} = require('./comunicacion_ipc_recibir')
 const {
     enviarAlMain, 
     iniciarTareas, 
     pedirTareaEspecifica, 
-    filtrar
     } = require('./comunicacion_ipc_envio')
 
 
 iniciarTareas ()
 recibirTodas_las_Tareas(recorrerTareas)
+obtener_filtros()
 
 /*******************************************************\
                     EVENTOS DE BOTON
@@ -101,7 +101,4 @@ function contarDiasTranscurridos (fecha_creacion) {
     return Math.trunc ((fecha_hoy - fecha_creacion) / (1000*60*60*24));
 }
 
-function ejecutarFiltro (filtros){
-    filtrar(obtener_filtros)
-}
 

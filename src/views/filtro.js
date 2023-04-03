@@ -1,4 +1,6 @@
 
+const {filtrar} = require('./comunicacion_ipc_envio')
+
 module.exports = function (){
 
    let filtros = document.getElementsByClassName('checkbox_filtro')
@@ -13,7 +15,9 @@ module.exports = function (){
             arreglo.push(this.value)            
          }
          else arreglo.splice(arreglo.indexOf(this.value), 1)
+         console.log(arreglo);
+         filtrar(arreglo)
       }); cantidad_checkbox --
    }
-   return arreglo 
+   
 }

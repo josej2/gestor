@@ -6,6 +6,7 @@ const llamar_tareas_en_mysql = require('./mysql/llamar_Tareas')//modulo para lla
 const llamar_tarea_especifica = require('./mysql/llamar_tarea_especifica')//modulo para llamar una tarea en especial
 const eliminar_tarea_en_mysql = require('./mysql/eliminar_tarea')
 const insertar_registro_tarea_eliminada_mysql = require('./mysql/insertar_registro_tarea_eliminada')
+const filtrar_desde_mysql = require('./mysql/filtrar_tareas')
 const {crearInterfaz} = require('./procesos_principales/creacion_Ventana')//modulo donde se configura y crea  ventana
 const {CrearVentanaTareaEspecifica} = require('./procesos_principales/crear_ventana_tarea')
 
@@ -78,6 +79,64 @@ ipcMain.on('confirma_eliminacion', async (event, objeto) => {
     }catch (error) {
         console.log(`error al elminar y generar registro de tarea ${error}`);
     }
+})
+
+ipcMain.on('filtrar', async (event, filtro) => {
+   
+    console.log('inicia opciones de filtrado');
+    let filtros_clase = []
+    let filtros_tipo  = []
+
+    let aplicar_and_tipo = false;
+    let aplicar_and_clase = false;
+
+    filtro.map(elemento => {
+
+       if   (elemento == 'Tareas instantanea' || elemento == 'Tareas cortas' || elemento == 'Tareas largas' || elemento == 'Proyectos'){
+            if (aplicar_and_tipo) {
+                filtros_tipo.push(` or tipo = '${elemento}'`);
+            }else {
+                aplicar_and_tipo = true; 
+                filtros_tipo.push(` tipo = '${elemento}'`); 
+            }
+        }
+        else{
+            if(aplicar_and_clase){
+                filtros_clase.push(` or clase = '${elemento}'`);
+            }else {
+                aplicar_and_clase = true; 
+                filtros_clase.push(` clase = '${elemento}'`);
+            }
+        }    
+    })
+
+    let cadena_de_filtrado = ""
+
+    if (filtros_tipo.length !=0) {
+        filtros_tipo.map( elemento => {
+            cadena_de_filtrado += elemento
+        })
+        if (filtros_clase.length !=0) {
+            cadena_de_filtrado += ' or '
+            filtros_clase.map( elemento => {
+                cadena_de_filtrado += elemento
+            })
+        }    
+    }else if (filtros_clase.length !=0 ) {
+        filtros_clase.map( elemento => {
+            cadena_de_filtrado += elemento
+        })
+    }
+    console.log(cadena_de_filtrado);
+
+    let resultado_filtro = filtrar_desde_mysql (cadena_de_filtrado)
+    
+    resultado_filtro.then ( tareas => {
+        console.log(tareas);
+        ventana.webContents.send('actualizar_tareas', tareas)
+    })
+    
+    
 })
 
 

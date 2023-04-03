@@ -27,6 +27,7 @@ function eliminarTarea (objeto){
 //evento para filtrar las tareas por tipo y clase
 function filtrar (filtro){
     ipcRenderer.send('filtrar',filtro)
+    console.log('se hace un envío');
 }
 
 module.exports = {
